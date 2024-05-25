@@ -6,11 +6,11 @@ class Solution(object):
         """
         first = second = float("inf")
         for i in range(len(nums)):
-            if nums[i] < first:
+            if nums[i] <= first:
                 first = nums[i]
-            elif nums[i] < second and nums[i] > first:
+            elif nums[i] <= second:
                 second = nums[i]
-            elif nums[i] > first and nums[i] > second:
+            else:
                 return True
         return False
 
