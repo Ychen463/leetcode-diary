@@ -9,7 +9,6 @@ class Solution(object):
         p1, p2 = 0, len(nums) -1
         counter =0
         while p1 < p2:
-            print(p1, nums[p1], p2, nums[p2], counter )
             if nums[p1] + nums[p2] == k:
                 counter+=1
                 p2 -=1
