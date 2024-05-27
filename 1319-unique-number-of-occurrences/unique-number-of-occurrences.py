@@ -7,12 +7,5 @@ class Solution:
         # Method 2: hashMap
         hashMap = {}
         for num in arr:
-            if num not in hashMap:
-                hashMap[num] = 1
-            else:
-                hashMap[num] += 1
-        
+            hashMap[num]=hashMap.get(num,0) +1
         return len(hashMap) == len(set(hashMap.values()))
-
-        # occurances = [each for each in hashMap.values]
-        # return len(set(hashMap.values)) == len(hashMap.values)
