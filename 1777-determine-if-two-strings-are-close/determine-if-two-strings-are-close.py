@@ -3,8 +3,7 @@ class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
         hp1 = collections.Counter(word1)
         hp2 = collections.Counter(word2)
-        print(hp1)
-        print(hp2)
+
         # 为了判断两个字符串是否接近，我们需要满足以下几个条件：
         # 1. 两个字符串的长度必须相同。
         # 2. 两个字符串包含的字符集合必须相同。
