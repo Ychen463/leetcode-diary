@@ -2,52 +2,52 @@ from collections import deque
 
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
-        q_r = deque()
-        q_d = deque()
-        for i , s in enumerate(senate) :
-            if s == 'D':
-                q_d.append(i)
-            else:
-                q_r.append(i)
+        # # Method 1: 2 Queue 
+        # q_r = deque()
+        # q_d = deque()
+
+        # # 初始化队列，存储每个参议员的索引
+        # for i, s in enumerate(senate):
+        #     if s == 'R':
+        #         q_r.append(i)
+        #     else:
+        #         q_d.append(i)
+
+        # # 模拟投票过程
+        # n = len(senate)
+        # while q_r and q_d:
+        #     r_index = q_r.popleft()  # 弹出Radiant参议员的索引
+        #     d_index = q_d.popleft()  # 弹出Dire参议员的索引
+
+        #     if r_index < d_index:
+        #         # 如果R的索引小，R胜出，R重新排队，索引加n
+        #         q_r.append(r_index + n)
+        #     else:
+        #         # 如果D的索引小，D胜出，D重新排队，索引加n
+        #         q_d.append(d_index + n)
+
+        # # 判断最终胜利者
+        # return "Radiant" if q_r else "Dire"
                 
-        while q_r and q_d:
-            Radiant = q_r.popleft()
-            Dire = q_d.popleft()
-            if Radiant< Dire:
-                q_r.append(len(senate) + Radiant)
+        # Method 2: Single Queue
+        r_count, d_count = senate.count('R') , senate.count('D')
+        floating_ban_r = floating_ban_d = 0
+        q = deque(senate)
+        while r_count and d_count:
+            cur = q.popleft()
+            if cur == 'D':
+                if floating_ban_r: # D 本轮 被banned
+                    floating_ban_r -= 1
+                    d_count -=1
+                else:
+                    floating_ban_d +=1 # 否则 D senator会ban R
+                    q.append(cur) # D 行驶ban权利，排队下一轮
             else:
-                q_d.append(len(senate)+Dire)
-        return 'Radiant' if q_r else 'Dire'
-                
+                if floating_ban_d: # D 本轮 被banned
+                    floating_ban_d -= 1
+                    r_count -=1
+                else:
+                    floating_ban_r +=1 # 否则 D senator会ban R
+                    q.append(cur) # D 行驶ban权利，排队下一轮
 
-
-            
-            
-
-
-
-
-
-
-
-#         if "D" not in senate:
-#             return "Radiant"
-#         if "R" not in senate:
-#             return "Dire"
-#         while len(senate) > 1:
-#             if senate[0] == "R" and "D" in senate[1:]:
-# #                 print(senate.index("D"))
-#                 senate=senate.replace('D', '', 1)
-#                 senate=senate.replace('R', '', 1)
-#                 if len(senate) == 0:
-#                     return "Radiant"
-#             elif senate[0] == "D" and "R" in senate[1:]:
-# #                 print(senate.index("D"))
-#                 senate=senate.replace('D', '', 1)
-#                 senate=senate.replace('R', '', 1)
-#                 if len(senate) == 0:
-#                     return "Dire"
-#         if senate == "D":
-#             return "Dire"
-#         else:
-#             return "Radiant"
+        return 'Dire' if d_count else 'Radiant'
