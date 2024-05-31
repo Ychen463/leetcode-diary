@@ -4,45 +4,27 @@ class Solution:
         self.index = 0
 
     def decodeString(self, s: str) -> str:
+        # --------------------------------
+        # Method 1: Recursion
         result = []
         while self.index < len(s) and s[self.index] != ']':
-            # 1. char
-            if not s[self.index].isdigit():
+            # 1. 如果当前字符是字母，直接添加到 result 列表中，并更新索引 index。
+            if not s[self.index].isdigit(): # 如果是char 
                 result.append(s[self.index])
-                self.index += 1
+                self.index +=1
             else:
-                # 2. digit
-                k = 0
-                while self.index < len(s) and s[self.index].isdigit():
+                # 2. 如果当前字符是digit，构建重复次数 k，处理多位数字。
+                k = 0 # 重复次数
+                while self.index <len(s) and s[self.index].isdigit():
                     k = k * 10 + int(s[self.index])
-                    self.index += 1
-                self.index += 1
-                decoded_string = self.decodeString(s)
-                self.index += 1
-                result += decoded_string*k
-        return ''.join(result)
-
-        # # --------------------------------
-        # # Method 1: Recursion
-        # result = []
-        # while self.index < len(s) and s[self.index] != ']':
-        #     # 1. 如果当前字符是字母，直接添加到 result 列表中，并更新索引 index。
-        #     if not s[self.index].isdigit(): # 如果是char 
-        #         result.append(s[self.index])
-        #         self.index +=1
-        #     else:
-        #         # 2. 如果当前字符是digit，构建重复次数 k，处理多位数字。
-        #         k = 0 # 重复次数
-        #         while self.index <len(s) and s[self.index].isdigit():
-        #             k = k * 10 + int(s[self.index])
-        #             self.index +=1
+                    self.index +=1
                 
-        #         # 3. 构造result string “3[a]”
-        #         self.index += 1  # 跳过 '['
-        #         decoded_string = self.decodeString(s)  # 递归处理子字符串
-        #         self.index += 1  # 跳过 ']'
-        #         result.append(decoded_string * k) # 将解码结果重复 k 次并添加到 result 中
-        # return ''.join(result)
+                # 3. 构造result string “3[a]”
+                self.index += 1  # 跳过 '['
+                decoded_string = self.decodeString(s)  # 递归处理子字符串
+                self.index += 1  # 跳过 ']'
+                result.append(decoded_string * k) # 将解码结果重复 k 次并添加到 result 中
+        return ''.join(result)
 
         # --------------------------------
         # Method 2: Stack
