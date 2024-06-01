@@ -52,39 +52,62 @@ class Solution:
 
         # return 'Dire' if d_count else 'Radiant'
 
-        # Method 3 Greedy Algorithm
-        senate = list(senate) # 换成list因为可以进行删减
-        d_count = senate.count('D')
-        r_count = len(senate) - d_count
+        # # Method 3 Greedy Algorithm
+        # senate = list(senate) # 换成list因为可以进行删减
+        # d_count = senate.count('D')
+        # r_count = len(senate) - d_count
         
-        # 定义禁令函数，从指定位置开始寻找并禁止对方参议员
-        def ban(to_ban, start_index):
-            # loop_around的作用是在每次指针移动时检查是否回到了列表的开头。
-            # 如果指针已经回到了列表的开头，说明我们已经遍历了一轮。
-            # 这样做是为了确保我们能够正确地找到并禁掉一个对方参议员。
-            loop_around = False 
-            pointer = start_index
-            while True: # 用while是为了找到 start_index后的 第一个看到的敌人
-                if pointer == 0:
-                    loop_around = True
-                if senate[pointer] == to_ban:
-                    senate.pop(pointer)
+        # # 定义禁令函数，从指定位置开始寻找并禁止对方参议员
+        # def ban(to_ban, start_index):
+        #     # loop_around的作用是在每次指针移动时检查是否回到了列表的开头。
+        #     # 如果指针已经回到了列表的开头，说明我们已经遍历了一轮。
+        #     # 这样做是为了确保我们能够正确地找到并禁掉一个对方参议员。
+        #     loop_around = False 
+        #     pointer = start_index
+        #     while True: # 用while是为了找到 start_index后的 第一个看到的敌人
+        #         if pointer == 0:
+        #             loop_around = True
+        #         if senate[pointer] == to_ban:
+        #             senate.pop(pointer)
+        #             break
+        #         pointer = (pointer+1)% len(senate)
+        #     return loop_around
+
+        # turn = 0
+        # while d_count and r_count:
+        #     # ban_senator_before 的意思是刚好轮换了一轮
+        #     if senate[turn] == 'D':
+        #         ban_senator_before = ban('R', (turn + 1 ) % len(senate))
+        #         r_count -= 1
+        #     elif senate[turn] == 'R':
+        #         ban_senator_before = ban('D', (turn + 1 ) % len(senate))
+        #         d_count -= 1
+        #     if ban_senator_before:
+        #         turn -= 1
+        #     turn = (turn+1) % len(senate)
+        # return 'Dire' if d_count else 'Radiant'
+
+        # Method 4 Boolean Array
+        d_count, r_count = senate.count('D'),senate.count('R')
+        banned = [False] * len(senate)
+
+
+        def ban(to_ban, start_with):
+            pointer = start_with
+            while True:
+                if senate[pointer] == to_ban and not banned[pointer]:
+                    banned[pointer] = True
                     break
-                pointer = (pointer+1)% len(senate)
-            return loop_around
-
-
-
+                pointer = (pointer +1 ) % len(senate)
+        
         turn = 0
         while d_count and r_count:
-            # ban_senator_before 的意思是刚好轮换了一轮
-            if senate[turn] == 'D':
-                ban_senator_before = ban('R', (turn + 1 ) % len(senate))
-                r_count -= 1
-            elif senate[turn] == 'R':
-                ban_senator_before = ban('D', (turn + 1 ) % len(senate))
-                d_count -= 1
-            if ban_senator_before:
-                turn -= 1
+            if not banned[turn]:
+                if senate[turn] == 'D':
+                    ban('R', (turn+1) %len(senate))
+                    r_count -=1
+                else :
+                    ban('D', (turn+1) %len(senate))
+                    d_count -=1
             turn = (turn+1) % len(senate)
         return 'Dire' if d_count else 'Radiant'
