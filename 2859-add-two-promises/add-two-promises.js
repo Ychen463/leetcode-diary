@@ -4,9 +4,14 @@
  * @return {Promise}
  */
 var addTwoPromises = async function(promise1, promise2) {
-    var num1 = await promise1
-    var num2 = await promise2
-    return num1+num2
+    try {
+        const [res1, res2] = await Promise.all([promise1, promise2]);
+        return res1 + res2
+    } catch (error) {
+        throw new Error(error)
+    }
+    
+    return Sum(arrayNum)
 };
 
 /**
