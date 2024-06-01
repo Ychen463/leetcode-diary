@@ -2,7 +2,7 @@
  * @param {Function} fn
  * @return {Function}
  */
-function memoize(fn) {
+// function memoize(fn) {
     // const cache = new Map(); // 声明为局部变量 
     // return function(...args) {
     //     const key = JSON.stringify(args);
@@ -13,23 +13,23 @@ function memoize(fn) {
     //     return cache[key]
     //     }
     // }
-    const cache = new Map();
-  return function() {
-    let key = arguments[0];
-    if (arguments[1]) {
-      key += arguments[1] * 100001;
-    }
-    const result = cache.get(key);
-    if (result !== undefined) {
-      return result;
-    }
-    const functionOutput = fn.apply(null, arguments);
-    cache.set(key, functionOutput);
-    return functionOutput;
-  }
-}
-
-
+//     const cache = new Map();
+//   return function() {
+//     let key = arguments[0];
+//     if (arguments[1]) {
+//       key += arguments[1] * 100001;
+//     }
+//     const result = cache.get(key);
+//     if (result !== undefined) {
+//       return result;
+//     }
+//     const functionOutput = fn.apply(null, arguments);
+//     cache.set(key, functionOutput);
+//     return functionOutput;
+//   }
+// }
+var memoize = (fn, cache = {}) => (...args) => cache[args.join()] ?? (cache[args.join()] = fn(...args))
+// var memoize = (fn, cache = {}) => (...args) => cache[args.join()] ?? (cache[args.join()] = fn(...args)) 
 /** 
  * let callCount = 0;
  * const memoizedFn = memoize(function (a, b) {
