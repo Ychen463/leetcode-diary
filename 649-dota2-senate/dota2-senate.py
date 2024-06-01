@@ -1,5 +1,5 @@
 from collections import deque
-
+from bisect import bisect_left
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
         # # Method 1: 2 Queue 
@@ -87,27 +87,53 @@ class Solution:
         #     turn = (turn+1) % len(senate)
         # return 'Dire' if d_count else 'Radiant'
 
-        # Method 4 Boolean Array
-        d_count, r_count = senate.count('D'),senate.count('R')
-        banned = [False] * len(senate)
+        # # Method 4 Boolean Array
+        # d_count, r_count = senate.count('D'),senate.count('R')
+        # banned = [False] * len(senate)
 
 
-        def ban(to_ban, start_with):
-            pointer = start_with
-            while True:
-                if senate[pointer] == to_ban and not banned[pointer]:
-                    banned[pointer] = True
-                    break
-                pointer = (pointer +1 ) % len(senate)
+        # def ban(to_ban, start_with):
+        #     pointer = start_with
+        #     while True:
+        #         if senate[pointer] == to_ban and not banned[pointer]:
+        #             banned[pointer] = True
+        #             break
+        #         pointer = (pointer +1 ) % len(senate)
         
+        # turn = 0
+        # while d_count and r_count:
+        #     if not banned[turn]:
+        #         if senate[turn] == 'D':
+        #             ban('R', (turn+1) %len(senate))
+        #             r_count -=1
+        #         else :
+        #             ban('D', (turn+1) %len(senate))
+        #             d_count -=1
+        #     turn = (turn+1) % len(senate)
+        # return 'Dire' if d_count else 'Radiant'
+
+        # Method 5 Binary Search
+        banned = [False] * len(senate)
+        r_indices = [ i for i in range(len(senate)) if senate[i] == 'R']
+        d_indices = [ i for i in range(len(senate)) if senate[i] == 'D']
+
+        # 禁止从start_at位置开始的indices_array中的下一个参议员
+        def ban(indices_array, start_with):
+            # 使用二分查找找到下一个要禁止的参议员的索引
+            temp = bisect_left(indices_array,start_with)
+             # 如果start_at大于最后一个索引，从头开始查找并禁止第一个参议员
+            if temp == len(indices_array):
+                banned[indices_array.pop(0)] = True
+            else:
+                banned[indices_array.pop(temp)] = True
+
         turn = 0
-        while d_count and r_count:
+        while r_indices and d_indices:
             if not banned[turn]:
-                if senate[turn] == 'D':
-                    ban('R', (turn+1) %len(senate))
-                    r_count -=1
-                else :
-                    ban('D', (turn+1) %len(senate))
-                    d_count -=1
+                if senate[turn] == 'D' :
+                    ban(r_indices, turn)
+                else:
+                    ban(d_indices, turn)
             turn = (turn+1) % len(senate)
-        return 'Dire' if d_count else 'Radiant'
+        # 当其中一个党派的参议员列表为空时，返回另一个党派为胜利者。
+        return 'Radiant' if not d_indices else 'Dire'
