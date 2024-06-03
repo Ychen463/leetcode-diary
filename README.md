@@ -1,3 +1,4 @@
 # leetcode-diary
 
-![Leetcode Stats](https://leetcard.yanlinc/yanlinc)
+To Keep Track on my Leetcode.
+![LeetCode Stats](https://leetcard.jacoblin.cool/yanlinc?theme=wtf&font=Roboto&ext=heatmap)
