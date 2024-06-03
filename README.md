@@ -2,4 +2,4 @@
 
 To Keep Track on my Leetcode.
 
-![LeetCode Stats](https://leetcard.jacoblin.cool/yanlinc?theme=wtf&font=Roboto&ext=heatmap)
+![LeetCode Stats](https://leetcard.jacoblin.cool/yanlinc?theme=dark&font=Open%20Sans&ext=heatmap)
