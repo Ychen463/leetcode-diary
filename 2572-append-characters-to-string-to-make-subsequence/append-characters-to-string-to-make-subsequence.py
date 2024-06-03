@@ -6,10 +6,7 @@ class Solution:
             if t[pointer_t] == s[pointer_s]:
                 counter -=1
                 pointer_t +=1
-                pointer_s +=1
-                print(pointer_t,pointer_s, counter)
-            else:
-                pointer_s +=1
+            pointer_s +=1
 
         return counter
         
