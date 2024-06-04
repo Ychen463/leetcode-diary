@@ -4,7 +4,10 @@ from collections import defaultdict
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        # prefix_sum_count 是一个哈希表（使用 defaultdict），用于存储每个前缀和出现的次数。
         prefixSumCount = defaultdict(int)
+        # 将前缀和为0的情况存入哈希表，prefix_sum_count[0] = 1，
+        # 表示初始状态下前缀和为0出现一次。
         prefixSumCount[0] = 1
         currentSum = 0
         count = 0
