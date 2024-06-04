@@ -19,24 +19,40 @@
 #         return length
 # ------------------------------------------------------------------
 
-# Method 2: Greedy Way (Optimized)
-from collections import Counter
+# # Method 2: Greedy Way (Optimized)
+# from collections import Counter
+# class Solution:
+#     def longestPalindrome(self, s: str) -> int:
+#         freqMap = {}
+#         odd_freq_count = 0
+#         for char in s:
+#             freqMap[char] = freqMap.get(char, 0) + 1
+#             if (freqMap[char] % 2) != 0:
+#                 odd_freq_count +=1 
+#             else:
+#                 odd_freq_count -=1
+
+#         if odd_freq_count >0:
+#             return len(s) - odd_freq_count+1
+#         else:
+#             return len(s)
+
+# ------------------------------------------------------------------
+
+# # Method 3: Greedy Way (Hash Set)
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        freqMap = {}
-        odd_freq_count = 0
+        char_set = set()
+        res = 0
+
         for char in s:
-            freqMap[char] = freqMap.get(char, 0) + 1
-            if (freqMap[char] % 2) != 0:
-                odd_freq_count +=1 
+            if char in char_set:
+                char_set.remove(char)
+                res +=2
             else:
-                odd_freq_count -=1
-
-        if odd_freq_count >0:
-            return len(s) - odd_freq_count+1
-        else:
-            return len(s)
-
-
+                char_set.add(char)
+        if char_set:
+            res +=1
+        return res
         
         
