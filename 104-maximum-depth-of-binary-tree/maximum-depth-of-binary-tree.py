@@ -15,15 +15,16 @@ class Solution:
         #     return max(leftMaxDepth,rightMaxDepth) +1
 
         # ------------------------
-        # Method 2: Iteration with Stack
+        # # Method 2: Iteration with Stack
         st = []
         if root is not None:
             st.append((1, root))
         depth = 0
-        while st != []:
+        while st:
             current_depth, root = st.pop()
-            if root != None:
+            if root is not None:
                 depth = max(depth, current_depth)
                 st.append((current_depth+1, root.left))
                 st.append((current_depth+1, root.right))
         return depth
+
