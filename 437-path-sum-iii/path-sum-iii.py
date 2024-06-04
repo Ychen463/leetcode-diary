@@ -4,20 +4,38 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# -------- Method 1: DFS + Recursion
+from collections import defaultdict
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        # Use DFS + Recursion
-        if not root:
-            return 0
-        return self.dfs(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
-    def dfs(self, node, targetSum ):
-        if not node:
-            return 0
-        # 计算从当前节点开始的路径和
-        numPaths = 0
-        if node.val == targetSum:
-            numPaths += 1
-        # 继续递归计算左子树和右子树的路径和
-        numPaths += self.dfs(node.left, targetSum - node.val)
-        numPaths += self.dfs(node.right, targetSum - node.val)
-        return numPaths
+        def dfs(node: Optional[TreeNode], curr_sum: int) -> None:
+            nonlocal count
+            if not node:
+                return
+            
+            # 更新当前前缀和
+            curr_sum += node.val
+            
+            # 检查当前前缀和减去目标值是否存在于哈希表中
+            count += prefix_sums[curr_sum - targetSum]
+            
+            # 更新哈希表中当前前缀和的计数
+            prefix_sums[curr_sum] += 1
+            
+            # 递归处理左子树
+            dfs(node.left, curr_sum)
+            # 递归处理右子树
+            dfs(node.right, curr_sum)
+            
+            # 递归结束后，恢复哈希表中当前前缀和的计数
+            prefix_sums[curr_sum] -= 1
+        
+        count = 0
+        prefix_sums = defaultdict(int)
+        prefix_sums[0] = 1  # 初始化前缀和为0的情况
+        
+        dfs(root, 0)
+        return count
+
+        
