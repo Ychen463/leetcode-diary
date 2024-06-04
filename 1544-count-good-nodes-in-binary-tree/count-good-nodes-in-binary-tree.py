@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     # Method 1: DFS + Recursion
     # def goodNodes(self, root: TreeNode) -> int:
@@ -18,17 +19,35 @@ class Solution:
     #     return goods
     # ========================================
     # Method 2: iterative + DFS
+    # def goodNodes(self, root: TreeNode) -> int:
+    #     st = [(root, float("-inf"))]
+    #     goodNums = 0
+    #     while st:
+    #         node, maxValue = st.pop()
+    #         if maxValue <= node.val:
+    #             goodNums += 1
+    #         if node == None:
+    #             return currentGoodNums
+    #         if node.left:
+    #             st.append((node.left, max(maxValue, node.val)))
+    #         if node.right:
+    #             st.append((node.right, max(maxValue, node.val)))
+    #     return goodNums
+
+    # ========================================
+    # Method 2: BFS
     def goodNodes(self, root: TreeNode) -> int:
-        st = [(root, float("-inf"))]
-        goodNums = 0
-        while st:
-            node, maxValue = st.pop()
-            if maxValue <= node.val:
-                goodNums += 1
-            if node == None:
-                return currentGoodNums
+        if not root:
+            return 0
+        queue = deque([(root, float('-inf'))])
+        goods = 0
+        while queue:
+            node, max_so_far = queue.popleft()
+            if node.val >= max_so_far:
+                goods += 1
+            maxValue = max(node.val, max_so_far)
             if node.left:
-                st.append((node.left, max(maxValue, node.val)))
+                queue.append((node.left, maxValue))
             if node.right:
-                st.append((node.right, max(maxValue, node.val)))
-        return goodNums
+                queue.append((node.right, maxValue))
+        return goods
