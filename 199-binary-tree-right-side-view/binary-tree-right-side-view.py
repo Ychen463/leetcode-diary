@@ -27,26 +27,49 @@
 #             result.append(level[-1])
 #         return result
 
+# ======================================================
 # # Method 1: BFS: Two Queues
+# from collections import deque
+# class Solution:
+#     def rightSideView(self, root: Optional[TreeNode]) -> List[int]: 
+#         if root is None:
+#             return []
+#         rightside = []
+#         nextLevel = deque([root])
+
+#         while nextLevel:
+#             currLevel = nextLevel
+#             nextLevel = deque()
+
+#             while currLevel:
+#                 node = currLevel.popleft()
+#                 if node.left: # First one must be Left Child
+#                     nextLevel.append(node.left)
+#                 if node.right: # Second one must be Left Child
+#                     nextLevel.append(node.right)
+#                 # So the last would be the last right child
+#             rightside.append(node.val)
+#         return rightside
+            
+# ======================================================
+# # Method 2: BFS: One Queue + Sentinel
 from collections import deque
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]: 
         if root is None:
             return []
         rightside = []
-        nextLevel = deque([root])
-
-        while nextLevel:
-            currLevel = nextLevel
-            nextLevel = deque()
-
-            while currLevel:
-                node = currLevel.popleft()
-                if node.left: # First one must be Left Child
-                    nextLevel.append(node.left)
-                if node.right: # Second one must be Left Child
-                    nextLevel.append(node.right)
-                # So the last would be the last right child
-            rightside.append(node.val)
+        queue = deque([root,None])
+        curr = root
+        while queue:
+            prev, curr = curr, queue.popleft()
+            while curr: # add child nodes in the queue
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+                prev, curr = curr, queue.popleft()
+            rightside.append(prev.val)
+            if queue:
+                queue.append(None)
         return rightside
-            
