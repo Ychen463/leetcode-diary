@@ -1,0 +1,24 @@
+/**
+ * @param {number} millis
+ * @return {Promise}
+ */
+async function sleep(millis) {
+    await new Promise(res =>  setTimeout(res, millis))
+
+
+    // return new Promise( (res, rej) => {
+        
+    //     try{
+    //         setTimeout(() => res(5), millis)
+    //     }
+    //     catch(err) {
+    //         rej(err)
+    //     }
+    
+    // })
+}
+
+/** 
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
+ */
