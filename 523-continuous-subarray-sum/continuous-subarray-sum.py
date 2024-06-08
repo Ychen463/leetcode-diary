@@ -1,18 +1,17 @@
+# Method : Prefix_sum
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        
+        seen_mode = {0 : -1}
         prefix_mod = 0
-        mod_seen = {0:-1}
-
         for i in range(len(nums)):
-            prefix_mod = (prefix_mod + nums[i]) % k
-
-            if prefix_mod in mod_seen:
-                if i-mod_seen[prefix_mod] >=2:
+            prefix_mod = (prefix_mod+nums[i]) % k
+            if prefix_mod in seen_mode:
+                if i - seen_mode[prefix_mod] >= 2:
                     return True
             else:
-                mod_seen[prefix_mod] = i
+                seen_mode[prefix_mod] = i
         return False
+        
             
             
             
