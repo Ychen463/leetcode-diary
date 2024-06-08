@@ -15,19 +15,39 @@
 //     }
 // };
 
-// Approach 3: Promise Race
+// // Approach 3: Promise Race
+// var timeLimit = function(fn, t) {
+    
+//     return async function(...args) {
+//         const timeLimitPromise = new Promise((res, rej) => {
+//             setTimeout(()=>{
+//                 rej("Time Limit Exceeded")
+//             },t)
+//         });
+//         const returnedPromise = fn(...args);
+//         return Promise.race([timeLimitPromise,returnedPromise]);
+//     }
+// };
+
+// Approach 4: Async/Await + Clearing Timeout
 var timeLimit = function(fn, t) {
     
     return async function(...args) {
-        const timeLimitPromise = new Promise((res, rej) => {
-            setTimeout(()=>{
-                rej("Time Limit Exceeded")
-            },t)
-        });
-        const returnedPromise = fn(...args);
-        return Promise.race([timeLimitPromise,returnedPromise]);
+        return new Promise( async (res, rej) => {
+            const timeoutId = setTimeout(()=>{
+                rej("Time Limit Exceeded");
+            }, t);
+
+            try{
+                const result = await fn(...args);
+                res(result);
+            }catch(err){
+                rej(err);
+            }
+            clearTimeout(timeoutId);
+        })
     }
-};
+}
 
 /**
  * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
