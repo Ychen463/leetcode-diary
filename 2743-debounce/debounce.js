@@ -26,11 +26,10 @@
 var debounce = function(fn, t) {
     let intervalId;
     return function(...args) {
-        const lastCall = Date.now();
         if (intervalId) {
             clearInterval(intervalId)
         }
-        
+        const lastCall = Date.now();
         intervalId = setInterval(()=>{
             if (Date.now() - lastCall >= t){
                 fn(...args);
