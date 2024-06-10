@@ -38,36 +38,31 @@ class Solution:
         start1, end1 = left, mid
         start2, end2 = mid+1, right
 
-        # 复制到临时数组
         tempArr[left: right+1] = arr[left: right+1]
-        
-        # 初始化指针
-        i, j = start1, start2 # pointers for tempArr
-        k = left # pointer for arr
-        
-        # 合并两个子数组
+
+        i, j, k = start1, start2, left
         while i <= end1 and j <= end2:
             if tempArr[i] <= tempArr[j]:
                 arr[k] = tempArr[i]
-                i +=1
+                i += 1
             else:
                 arr[k] = tempArr[j]
-                j+=1
-            k +=1
+                j += 1
+            k+=1
         while i <= end1:
             arr[k] = tempArr[i]
-            i +=1
-            k +=1
+            i+=1
+            k+=1
         while j <= end2:
             arr[k] = tempArr[j]
-            k +=1
-            j +=1
-    def mergeSort(self, arr: List[int], left: int, right: int, tempArr: List[int]):
-        if left >= right:
-            return
-        mid = left + (right - left ) // 2 
-        self.mergeSort(arr, left, mid, tempArr)
+            j+=1
+            k+=1
 
+    def mergeSort(self, arr: List[int], left: int, right: int, tempArr: List[int]):
+        if left >= right :
+            return
+        mid = left + (right-left) //2
+        self.mergeSort(arr, left, mid, tempArr)
         self.mergeSort(arr, mid+1, right, tempArr)
         self.merge(arr, left, mid, right, tempArr)
 
@@ -75,14 +70,11 @@ class Solution:
     def heightChecker(self, heights: List[int]) -> int:
         tempArr = [0] * len(heights)
         sortedHeights = heights[:]
-        
-        # 使用归并排序对 sortedHeights 排序
-        self.mergeSort(sortedHeights, 0, len(sortedHeights) - 1, tempArr)
 
-        # 计算与原始数组的差异
+        self.mergeSort(sortedHeights, 0, len(heights)-1, tempArr)
         count = 0
         for i in range(len(heights)):
-            if heights[i] != sortedHeights[i]:
-                count += 1
-        
+            if sortedHeights[i] != heights[i]:
+                count +=1
         return count
+        
