@@ -21,22 +21,22 @@
 
 // ============== Approach 2: Using Iterative Queue ================
 var flat = function (arr, n) {
-    let nestedArrayElement = true;
-    let depth = 0;
+    let nestedArrayElement = true
     let queue;
-    while (nestedArrayElement && depth < n){
-        nestedArrayElement = false;
+    let depth = 0;
+    while(nestedArrayElement && depth < n){
         queue = [];
-        for (let num of arr){
+        nestedArrayElement = false;
+        for (const num of arr) {
             if (Array.isArray(num)){
-                queue.push(...num);
-                nestedArrayElement = true;
+                queue.push(...num)
+                nestedArrayElement = true
             } else {
-                queue.push(num);
+                queue.push(num)
             }
         }
         arr = [...queue];
-        depth ++;
+        depth++;
     }
-    return arr;
+    return arr
 }
