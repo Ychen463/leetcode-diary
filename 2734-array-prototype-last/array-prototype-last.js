@@ -8,10 +8,15 @@
 //     } 
 //     return  this[this.length -1] 
 // };
+//  // ========= Approach 1: Extending Array Prototype to Include a .last() Method
+// Array.prototype.last = function() {
+    
+//     return  this.length === 0? -1 : this[this.length -1] 
+// };
  // ========= Approach 1: Extending Array Prototype to Include a .last() Method
 Array.prototype.last = function() {
-    
-    return  this.length === 0? -1 : this[this.length -1] 
+    let val = this.pop()
+    return  val === undefined? -1: val
 };
 
 /**
