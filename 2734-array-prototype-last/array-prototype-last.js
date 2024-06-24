@@ -13,10 +13,15 @@
     
 //     return  this.length === 0? -1 : this[this.length -1] 
 // };
+//  // ========= Approach 1: Extending Array Prototype to Include a .last() Method
+// Array.prototype.last = function() {
+//     let val = this.pop()
+//     return  val === undefined? -1: val
+// };
+
  // ========= Approach 1: Extending Array Prototype to Include a .last() Method
 Array.prototype.last = function() {
-    let val = this.pop()
-    return  val === undefined? -1: val
+    return  this.length ? this.slice(-1)[0] : -1
 };
 
 /**
