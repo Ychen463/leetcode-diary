@@ -19,24 +19,40 @@
 //     return res
 // };
 
-// ============== Approach 2: Using Iterative Queue ================
+// // ============== Approach 2: Using Iterative Queue ================
+// var flat = function (arr, n) {
+//     let nestedArrayElement = true
+//     let queue;
+//     let depth = 0;
+//     while(nestedArrayElement && depth < n){
+//         queue = [];
+//         nestedArrayElement = false;
+//         for (const num of arr) {
+//             if (Array.isArray(num)){
+//                 queue.push(...num)
+//                 nestedArrayElement = true
+//             } else {
+//                 queue.push(num)
+//             }
+//         }
+//         arr = [...queue];
+//         depth++;
+//     }
+//     return arr
+// }
+
+// ============== Approach 3: Using Iterative Stack ============== 
 var flat = function (arr, n) {
-    let nestedArrayElement = true
-    let queue;
-    let depth = 0;
-    while(nestedArrayElement && depth < n){
-        queue = [];
-        nestedArrayElement = false;
-        for (const num of arr) {
-            if (Array.isArray(num)){
-                queue.push(...num)
-                nestedArrayElement = true
-            } else {
-                queue.push(num)
-            }
+    const stack = [...arr.map((item)=>[item,n])];
+    const res = [];
+
+    while (stack.length > 0){
+        const [item, depth] = stack.pop();
+        if (Array.isArray(item) && depth > 0){
+            stack.push(...item.map((el) => [el, depth-1]));
+        } else {
+            res.push(item);
         }
-        arr = [...queue];
-        depth++;
     }
-    return arr
+    return res.reverse();
 }
