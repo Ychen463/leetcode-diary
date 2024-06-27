@@ -1,3 +1,4 @@
+# ============= Approach #1: Depth-First Search ============= 
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         seen = [False] * len(rooms)
