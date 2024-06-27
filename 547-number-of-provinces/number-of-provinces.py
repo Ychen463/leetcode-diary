@@ -21,8 +21,8 @@ from collections import deque
 
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        def bfs(node):
-            queue = deque([node])
+        def bfs(start):
+            queue = deque([start])
             while queue:
                 node = queue.popleft()
                 for neighbor, is_connected in enumerate(isConnected[node]):
@@ -33,7 +33,7 @@ class Solution:
         count = 0
         for i in range(len(isConnected)):
             if i not in visited:
-                count+=1
-                bfs(i)
                 visited.add(i)
+                bfs(i)
+                count +=1
         return count
