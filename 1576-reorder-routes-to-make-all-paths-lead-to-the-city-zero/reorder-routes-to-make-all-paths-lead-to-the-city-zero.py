@@ -26,13 +26,12 @@ class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
         # 构造紧邻表
         graph = defaultdict(list)
-        for a, b  in connections:
+        for a, b in connections:
             graph[a].append((b, True))
             graph[b].append((a, False))
         queue = deque([0])
-        changes = 0
         visited = set([0])
-        
+        changes = 0
         while queue:
             node = queue.popleft()
             for neighbor, is_reverse in graph[node]:
@@ -40,5 +39,5 @@ class Solution:
                     visited.add(neighbor)
                     if is_reverse:
                         changes +=1
-                    queue.append(neighbor)        
+                    queue.append(neighbor)
         return changes
