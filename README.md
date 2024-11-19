@@ -12,6 +12,7 @@ To Keep Track on my Leetcode.
 | [0215-kth-largest-element-in-an-array](https://github.com/Ychen463/leetcode-diary/tree/master/0215-kth-largest-element-in-an-array) |
 | [1036-rotting-oranges](https://github.com/Ychen463/leetcode-diary/tree/master/1036-rotting-oranges) |
 | [2038-nearest-exit-from-entrance-in-maze](https://github.com/Ychen463/leetcode-diary/tree/master/2038-nearest-exit-from-entrance-in-maze) |
+| [2552-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/Ychen463/leetcode-diary/tree/master/2552-maximum-sum-of-distinct-subarrays-with-length-k) |
 | [2716-prime-subtraction-operation](https://github.com/Ychen463/leetcode-diary/tree/master/2716-prime-subtraction-operation) |
 ## Breadth-First Search
 |  |
@@ -55,4 +56,12 @@ To Keep Track on my Leetcode.
 |  |
 | ------- |
 | [0215-kth-largest-element-in-an-array](https://github.com/Ychen463/leetcode-diary/tree/master/0215-kth-largest-element-in-an-array) |
+## Hash Table
+|  |
+| ------- |
+| [2552-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/Ychen463/leetcode-diary/tree/master/2552-maximum-sum-of-distinct-subarrays-with-length-k) |
+## Sliding Window
+|  |
+| ------- |
+| [2552-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/Ychen463/leetcode-diary/tree/master/2552-maximum-sum-of-distinct-subarrays-with-length-k) |
 <!---LeetCode Topics End-->
