@@ -11,10 +11,11 @@ class Solution:
                 left += 1
             window_set.add(nums[right])
             curr_sum += nums[right]
+
             if right - left + 1 == k:
                 max_sum = max(max_sum, curr_sum)
                 window_set.remove(nums[left])
                 curr_sum -= nums[left]
                 left += 1
+
         return max_sum
-        
