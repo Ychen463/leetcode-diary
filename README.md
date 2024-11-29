@@ -52,6 +52,7 @@ To Keep Track on my Leetcode.
 |  |
 | ------- |
 | [0215-kth-largest-element-in-an-array](https://github.com/Ychen463/leetcode-diary/tree/master/0215-kth-largest-element-in-an-array) |
+| [2413-smallest-number-in-infinite-set](https://github.com/Ychen463/leetcode-diary/tree/master/2413-smallest-number-in-infinite-set) |
 ## Quickselect
 |  |
 | ------- |
@@ -59,9 +60,18 @@ To Keep Track on my Leetcode.
 ## Hash Table
 |  |
 | ------- |
+| [2413-smallest-number-in-infinite-set](https://github.com/Ychen463/leetcode-diary/tree/master/2413-smallest-number-in-infinite-set) |
 | [2552-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/Ychen463/leetcode-diary/tree/master/2552-maximum-sum-of-distinct-subarrays-with-length-k) |
 ## Sliding Window
 |  |
 | ------- |
 | [2552-maximum-sum-of-distinct-subarrays-with-length-k](https://github.com/Ychen463/leetcode-diary/tree/master/2552-maximum-sum-of-distinct-subarrays-with-length-k) |
+## Design
+|  |
+| ------- |
+| [2413-smallest-number-in-infinite-set](https://github.com/Ychen463/leetcode-diary/tree/master/2413-smallest-number-in-infinite-set) |
+## Ordered Set
+|  |
+| ------- |
+| [2413-smallest-number-in-infinite-set](https://github.com/Ychen463/leetcode-diary/tree/master/2413-smallest-number-in-infinite-set) |
 <!---LeetCode Topics End-->
