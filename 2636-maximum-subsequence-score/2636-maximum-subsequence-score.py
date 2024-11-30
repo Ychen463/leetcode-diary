@@ -3,7 +3,6 @@ class Solution:
     def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
         # Step 1: 将 nums1 和 nums2 按 nums2 值降序排列
         pairs = sorted(zip(nums2, nums1),reverse = True)
-        print(pairs)
         
         # Step 2: 使用一个最小堆维护 nums1 的前 k 大值
         min_heap = []
