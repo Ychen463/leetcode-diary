@@ -74,4 +74,16 @@ To Keep Track on my Leetcode.
 |  |
 | ------- |
 | [2413-smallest-number-in-infinite-set](https://github.com/Ychen463/leetcode-diary/tree/master/2413-smallest-number-in-infinite-set) |
+## Depth-First Search
+|  |
+| ------- |
+| [2201-valid-arrangement-of-pairs](https://github.com/Ychen463/leetcode-diary/tree/master/2201-valid-arrangement-of-pairs) |
+## Graph
+|  |
+| ------- |
+| [2201-valid-arrangement-of-pairs](https://github.com/Ychen463/leetcode-diary/tree/master/2201-valid-arrangement-of-pairs) |
+## Eulerian Circuit
+|  |
+| ------- |
+| [2201-valid-arrangement-of-pairs](https://github.com/Ychen463/leetcode-diary/tree/master/2201-valid-arrangement-of-pairs) |
 <!---LeetCode Topics End-->
